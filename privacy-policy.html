@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Food Network - Privacy Policy</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            background-color: #f0fff0; /* Light green background */
+            color: #333;
+            display: flex; /* Use flexbox for layout */
+            flex-direction: column; /* Stack items vertically by default */
+            align-items: center; /* Center items horizontally */
+        }
+
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(240, 255, 240, 0.8); /* Semi-transparent light green */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loader {
+            border: 8px solid #f3f3f3; /* Light grey border */
+            border-top: 8px solid #8fbc8f; /* Darker green top border */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            color: #2e8b57;
+            margin-top: 10px;
+        }
+
+        .content {
+            display: none; /* Initially hidden */
+            max-width: 800px; /* Limit the width of the text content for better readability */
+            width: 100%;
+        }
+
+        h1, h2 {
+            color: #2e8b57; /* Sea green headings */
+        }
+
+        a {
+            color: #2e8b57;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        canvas {
+            background-color: #ffffff; /* White background for the canvas */
+            border: 1px solid #8fbc8f; /* Green border */
+            margin-bottom: 20px;
+            display: none; /* Initially hidden, show after loading */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="loader-container" id="loaderContainer">
+        <div class="loader"></div>
+        <p class="loader-text">Loading... (Adjusting to your network)</p>
+    </div>
+
+    <canvas id="myCanvas" width="800" height="200"></canvas>
+
+    <div class="content" id="privacyPolicyContent">
+        <h1>Mega Food Network - Privacy Policy</h1>
+
+        <h2>1. Introduction</h2>
+        <p>This Privacy Policy explains how Mega Food Network (referred to as "we," "us," or "our") collects, uses, and protects your personal information. We are committed to ensuring the privacy and security of your data.</p>
+
+        <h2>2. Information We Collect</h2>
+        <p>We may collect the following types of personal information:</p>
+        <ul>
+            <li><strong>Account Information:</strong> Name, phone number, email address, location (if provided), date of birth (if provided), gender (if provided).</li>
+            <li><strong>Membership Information:</strong> Membership status, payment details for the membership fee.</li>
+            <li><strong>Contribution/Savings Plan Information:</strong> Subscription details, contribution amounts, payment history.</li>
+            <li><strong>Usage Data:</strong> Information about how you interact with our platform (e.g., pages visited, features used).</li>
+            <li><strong>Device Information:</strong> IP address, device type, operating system (may be collected automatically).</li>
+            <li><strong>Communications:</strong> Records of any correspondence between you and Mega Food Network.</li>
+            <li><strong>Voluntary Information:</strong> Any other information you choose to provide to us.</li>
+        </ul>
+
+        <h2>3. How We Collect Your Information</h2>
+        <p>We collect your personal information through the following methods:</p>
+        <ul>
+            <li>When you register and create an account on our platform.</li>
+            <li>When you pay the membership fee.</li>
+            <li>When you subscribe to and make contributions to our savings plans.</li>
+            <li>When you interact with the various features of our platform.</li>
+            <li>Automatically through technologies such as cookies (if used).</li>
+            <li>When you contact our customer support or communicate with us in any way.</li>
+        </ul>
+
+        <h2>4. How We Use Your Information</h2>
+        <p>We use your personal information for the following purposes:</p>
+        <ul>
+            <li>To create and manage your user account.</li>
+            <li>To process your membership fees and contributions/savings plan payments.</li>
+            <li>To provide you with access to our platform and its features.</li>
+            <li>To communicate with you regarding your account, important updates, and service-related information.</li>
+            <li>To personalize your experience on our platform.</li>
+            <li>To improve and develop our platform and services.</li>
+            <li>For security purposes and to prevent fraudulent activities.</li>
+            <li>To provide customer support and address your inquiries.</li>
+            <li>To comply with applicable legal obligations.</li>
+        </ul>
+
+        <h2>5. How We Share Your Information</h2>
+        <p>We may share your personal information with the following categories of third parties:</p>
+        <ul>
+            <li><strong>Service Providers:</strong> Companies that provide services to us, such as payment processing, website hosting, and data analysis. We ensure these providers have appropriate data protection measures in place.</li>
+            <li><strong>Legal Authorities:</strong> If required to do so by law or in response to a valid legal process.</li>
+            <li><strong>Business Transfers:</strong> In the event of a merger, acquisition, or sale of all or a portion of our assets.</li>
+            <li><strong>With Your Consent:</strong> When you have given us explicit permission to share your information for a specific purpose.</li>
+            <li><strong>Anonymized and Aggregated Data:</strong> We may share data that does not personally identify you for statistical or research purposes.</li>
+        </ul>
+
+        <h2>6. Data Security</h2>
+        <p>We take reasonable measures to protect your personal information from unauthorized access, use, or disclosure. These measures may include encryption, secure server infrastructure, access controls, and regular security assessments.</p>
+
+        <h2>7. Data Retention</h2>
+        <p>We will retain your personal information for as long as necessary to fulfill the purposes outlined in this Privacy Policy, or as required by law.</p>
+
+        <h2>8. Your Rights</h2>
+        <p>Depending on your location and applicable laws, you may have certain rights regarding your personal data, including the right to:</p>
+        <ul>
+            <li>Access the personal information we hold about you.</li>
+            <li>Request the correction of inaccurate or incomplete data.</li>
+            <li>Request the deletion of your personal information (in certain circumstances).</li>
+            <li>Restrict the processing of your personal information.</li>
+            <li>Object to the processing of your personal information.</li>
+            <li>Request the transfer of your personal information to another controller (where applicable).</li>
+            <li>To exercise these rights, please contact us using the information provided below.</li>
+        </ul>
+
+        <h2>9. Cookies and Similar Technologies</h2>
+        <p>We may use cookies and similar technologies to enhance your browsing experience and collect usage information. You can manage your cookie preferences through your browser settings.</p>
+
+        <h2>10. Links to Other Websites</h2>
+        <p>Our platform may contain links to third-party websites. We are not responsible for the privacy practices or content of these websites. We encourage you to review the privacy policies of any websites you visit.</p>
+
+        <h2>11. Children's Privacy</h2>
+        <p>Our platform is not intended for children under the age of [Specify Age]. We do not knowingly collect personal information from children. If you believe we have inadvertently collected information from a child, please contact us immediately.</p>
+
+        <h2>12. Updates to This Privacy Policy</h2>
+        <p>We may update this Privacy Policy from time to time. We will notify you of any significant changes by posting the updated policy on our platform or through other communication methods.</p>
+
+        <h2>13. Contact Us</h2>
+        <p>If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at:</p>
+        <p>maryannolubayo09@gmail.com</p>
+        
+
+        <p>Last Updated: 27/05/2024</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loaderContainer = document.getElementById('loaderContainer');
+            const privacyPolicyContent = document.getElementById('privacyPolicyContent');
+            const loaderText = document.querySelector('.loader-text');
+            const canvas = document.getElementById('myCanvas');
+            const ctx = canvas.getContext('2d');
+
+            // Function to simulate network speed and delay
+            function simulateNetworkDelay() {
+                return new Promise(resolve => {
+                    const delay = Math.random() * 3000 + 1000;
+                    setTimeout(() => {
+                        resolve();
+                    }, delay);
+                });
+            }
+
+            simulateNetworkDelay().then(() => {
+                loaderContainer.style.display = 'none';
+                privacyPolicyContent.style.display = 'block';
+                canvas.style.display = 'block'; // Show the canvas after the delay
+
+                // --- Canvas Drawing ---
+                // Green background for the canvas
+                ctx.fillStyle = '#f0fff0';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Sea green rectangle
+                ctx.fillStyle = '#2e8b57';
+                ctx.fillRect(100, 50, 600, 100);
+
+                // White text on the rectangle
+                ctx.font = '24px sans-serif';
+                ctx.fillStyle = '#ffffff';
+                ctx.textAlign = 'center';
+                ctx.fillText('Mega Food Network', canvas.width / 2, 110);
+                // --- End Canvas Drawing ---
+
+            });
+        });
+    </script>
+
+</body>
+</html>

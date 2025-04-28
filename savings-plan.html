@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Plans</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0fff0;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        header {
+            background-color: #e0f8e0;
+            color: #333;
+            padding: 1em 2em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        header .logo h1{
+           margin: 0;
+           color: #2e8b57;
+        }
+        header .back-button {
+            background: none;
+            border: none;
+            color: #2e8b57;
+            font-size: 1.2em;
+            cursor: pointer;
+            padding: 0.5em 1em;
+            transition: color 0.3s ease;
+        }
+        header .back-button:hover{
+            color: #5cb85c;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .loader-container.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .loader {
+            border: 8px solid #5cb85c;
+            border-radius: 50%;
+            border-top: 8px solid #f0fff0;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .input-section {
+            background-color: #f8fff8;
+            padding: 2em;
+            border-radius: 10px;
+            margin-bottom: 2em;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .input-section h2 {
+            color: #2e8b57;
+            margin-bottom: 1em;
+        }
+        .input-section .form-group {
+            margin-bottom: 1.5em;
+            text-align: left;
+        }
+        .input-section .form-group label {
+            display: block;
+            margin-bottom: 0.5em;
+            color: #333;
+            font-weight: bold;
+        }
+        .input-section .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .input-section .error-message {
+            color: red;
+            margin-top: 0.5em;
+        }
+        .btn-verify {
+            background-color: #5cb85c;
+            color: white;
+            padding: 1em 2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            margin-top: 1em;
+        }
+        .btn-verify:hover {
+            background-color: #2e8b57;
+        }
+        .plans-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 2em;
+            animation: slideIn 1s ease-out;
+        }
+        @keyframes slideIn {
+            from{
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to{
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .plan-card {
+            background-color: white;
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+        .plan-card:hover {
+            transform: translateY(-5px);
+        }
+        .plan-card h3 {
+            color: #2e8b57;
+            margin-bottom: 0.5em;
+        }
+        .plan-card p {
+            color: #555;
+            margin-bottom: 1em;
+        }
+         .plan-card ul{
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1em;
+        }
+        .plan-card ul li{
+            margin-bottom: 0.5em;
+            display: flex;
+            align-items: center;
+        }
+        .plan-card ul li::before {
+            content: '✓';
+            color: #5cb85c;
+            margin-right: 0.5em;
+        }
+        .btn-subscribe {
+            background-color: #5cb85c;
+            color: white;
+            padding: 1em 2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1em;
+        }
+        .btn-subscribe:hover {
+            background-color: #2e8b57;
+        }
+        .alert {
+            padding: 1em;
+            margin-bottom: 1em;
+            border-radius: 5px;
+        }
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .alert-success{
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        @media (max-width: 768px) {
+            .input-section {
+                padding: 1.5em;
+            }
+            .plans-section {
+                grid-template-columns: 1fr;
+            }
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+            header .back-button{
+                margin-bottom: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="back-button">Go Back</button>
+        <div class="logo">
+            <h1>Mega Food Network</h1>
+        </div>
+    </header>
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+    <div class="container">
+        <div class="input-section">
+            <h2>Verify Your Information</h2>
+            <div class="form-group">
+                <label for="whatsapp">WhatsApp Number:</label>
+                <input type="text" id="whatsapp" placeholder="Enter your WhatsApp number" required>
+                <div id="whatsapp-error" class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" required>
+                <div id="dob-error" class="error-message"></div>
+            </div>
+            <button class="btn-verify">Verify</button>
+            <div id="verification-message" class="alert" style="display: none;"></div>
+        </div>
+        <div class="plans-section" style="display: none;">
+            <h2>Available Subscription Plans</h2>
+             <div id="plans-message" class="alert" style="display: none;"></div>
+        </div>
+    </div>
+    <script>
+    const sheetDB_URL = "https://sheetdb.io/api/v1/8jgqfa5k6fhnw";
+const loaderContainer = document.querySelector('.loader-container');
+const verificationMessage = document.getElementById('verification-message');
+const plansSection = document.querySelector('.plans-section');
+const whatsappInput = document.getElementById('whatsapp');
+const dobInput = document.getElementById('dob');
+const backButton = document.querySelector('.back-button');
+const plansMessage = document.getElementById('plans-message');
+
+
+let userData = null;
+let isVerificationSuccessful = false;
+
+const plansData = [
+    {
+        name: "3500 Weekly for 5 Weeks",
+        price: 3500,
+        durationWeeks: 5,
+        description: "Pay 3500 Naira weekly for 5 weeks and receive foodstuff worth 17500 Naira.",
+        totalCost: 17500
+    },
+    {
+        name: "7000 Weekly for 3 Weeks",
+        price: 7000,
+        durationWeeks: 3,
+        description: "Pay 7000 Naira weekly for 3 weeks and receive foodstuff worth 21000 Naira.",
+        totalCost: 21000
+    },
+    {
+        name: "7000 Weekly for 4 Weeks",
+        price: 7000,
+        durationWeeks: 4,
+        description: "Pay 7000 Naira weekly for 4 weeks and receive foodstuff worth 28000 Naira.",
+        totalCost: 28000
+    },
+    {
+        name: "7000 Weekly for 5 Weeks",
+        price: 7000,
+        durationWeeks: 5,
+        description: "Pay 7000 Naira weekly for 5 weeks and receive foodstuff worth 35000 Naira.",
+        totalCost: 35000
+    },
+    {
+        name: "7000 Weekly for 8 Weeks",
+        price: 7000,
+        durationWeeks: 8,
+        description: "Pay 7000 Naira weekly for 8 weeks and receive foodstuff worth 56000 Naira.",
+        totalCost: 56000
+    },
+    {
+        name: "10,500 Weekly for 4 Weeks",
+        price: 10500,
+        durationWeeks: 4,
+        description: "Pay 10,500 Naira weekly for 4 weeks and receive foodstuff worth 42000 Naira.",
+        totalCost: 42000
+    },
+    {
+        name: "10,500 Weekly for 5 Weeks",
+        price: 10500,
+        durationWeeks: 5,
+        description: "Pay 10,500 Naira weekly for 5 weeks and receive foodstuff worth 52500 Naira.",
+        totalCost: 52500
+    },
+    {
+        name: "10,500 Weekly for 8 Weeks",
+        price: 10500,
+        durationWeeks: 8,
+        description: "Pay 10,500 Naira weekly for 8 weeks and receive foodstuff worth 84000 Naira.",
+        totalCost: 84000
+    },
+    {
+        name: "14,000 Weekly for 4 Weeks",
+        price: 14000,
+        durationWeeks: 4,
+        description: "Pay 14,000 Naira weekly for 4 weeks and receive foodstuff worth 56000 Naira.",
+        totalCost: 56000
+    },
+    {
+        name: "14,000 Weekly for 8 Weeks",
+        price: 14000,
+        durationWeeks: 8,
+        description: "Pay 14,000 Naira weekly for 8 weeks and receive foodstuff worth 112000 Naira.",
+        totalCost: 112000
+    },
+];
+
+function showLoader() {
+    loaderContainer.classList.add('show');
+}
+
+function hideLoader() {
+    loaderContainer.classList.remove('show');
+}
+
+function validateInput() {
+    const whatsapp = whatsappInput.value.trim();
+    const dob = dobInput.value;
+    let isValid = true;
+
+    if (!whatsapp) {
+        document.getElementById('whatsapp-error').textContent = 'Please enter your WhatsApp number.';
+        isValid = false;
+    } else if (!/^\d{10,14}$/.test(whatsapp)) {
+        document.getElementById('whatsapp-error').textContent = 'Please enter a valid WhatsApp number (10-14 digits).';
+        isValid = false;
+    } else {
+        document.getElementById('whatsapp-error').textContent = '';
+    }
+
+    if (!dob) {
+        document.getElementById('dob-error').textContent = 'Please enter your date of birth.';
+        isValid = false;
+    } else {
+        document.getElementById('dob-error').textContent = '';
+    }
+
+    return isValid;
+}
+
+async function verifyUser() {
+    if (!validateInput()) {
+        return;
+    }
+
+    const whatsapp = whatsappInput.value.trim();
+    const dob = dobInput.value;
+
+    showLoader();
+    try {
+        const response = await fetch(`${sheetDB_URL}?filter[whatsapp-number]=${whatsapp}&filter[dob]=${dob}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+
+        if (data && data.length > 0) {
+            userData = data[0];
+            //  Format the WhatsApp number
+            let formattedWhatsApp = userData["whatsapp-number"]; // Access with the correct column name.
+            if (formattedWhatsApp.startsWith('0')) {
+                formattedWhatsApp = '234' + formattedWhatsApp.slice(1);
+            } else if (formattedWhatsApp.startsWith('+')) {
+                formattedWhatsApp = formattedWhatsApp.replace('+', '');
+            }
+            //  Remove any non-digit characters
+            formattedWhatsApp = formattedWhatsApp.replace(/[^0-9]/g, '');
+
+            if (!formattedWhatsApp.startsWith('234')) {
+                formattedWhatsApp = '234' + formattedWhatsApp
+            }
+            userData.whatsapp = formattedWhatsApp; // Update userData with formatted number.
+
+            isVerificationSuccessful = true;
+            verificationMessage.textContent = 'Verification successful!';
+            verificationMessage.className = 'alert alert-success';
+            verificationMessage.style.display = 'block';
+            displayPlans();
+        } else {
+            verificationMessage.textContent = 'User not found. Please register on the membership page.';
+            verificationMessage.className = 'alert alert-danger';
+            verificationMessage.style.display = 'block';
+        }
+    } catch (error) {
+        console.error('Error verifying user:', error);
+        verificationMessage.textContent = 'An error occurred while verifying your information. Please try again later.';
+        verificationMessage.className = 'alert alert-danger';
+        verificationMessage.style.display = 'block';
+    } finally {
+        hideLoader();
+    }
+}
+
+function generateWhatsAppMessage(planName) {
+    const baseMessage = "Hi, I want to subscribe for the ";
+    return `${baseMessage}${planName} plan.`;
+}
+
+function displayPlans() {
+    if (!isVerificationSuccessful) {
+        plansMessage.textContent = "Please verify your details to view available plans"
+        plansMessage.className = "alert alert-danger"
+        plansSection.style.display = 'none';
+        return;
+    }
+    plansSection.style.display = 'block';
+    plansSection.innerHTML = '<h2>Available Subscription Plans</h2>';
+
+    const receiverWhatsAppNumber = '2348084159161'; // The recipient number.
+
+    plansData.forEach(plan => {
+        const planCard = document.createElement('div');
+        planCard.className = 'plan-card';
+        planCard.innerHTML = `
+            <h3>${plan.name}</h3>
+            <p>${plan.description}</p>
+             <ul>
+                <li><strong>Price:</strong> ₦${plan.price.toLocaleString()}</li>
+                <li><strong>Duration:</strong> ${plan.durationWeeks} weeks</li>
+                <li><strong>Total Cost:</strong> ₦${plan.totalCost.toLocaleString()}</li>
+            </ul>
+            <a href="https://wa.me/${receiverWhatsAppNumber}?text=${encodeURIComponent(generateWhatsAppMessage(plan.name))}" class="btn-subscribe" target="_blank">Subscribe Now</a>
+        `;
+        plansSection.appendChild(planCard);
+    });
+}
+
+document.querySelector('.btn-verify').addEventListener('click', verifyUser);
+backButton.addEventListener('click', () => {
+    window.history.back();
+});
+                    
+    </script>
+</body>
+</html>

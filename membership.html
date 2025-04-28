@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Food Network</title>
+    <link rel="stylesheet" href="css/membership.css">
+</head>
+<body>
+    <section id="membership-registration" class="section">
+        <h2>Become a Mega Food Network Member</h2>
+        <p>Unlock exclusive access and support our community by becoming a member for a one-time fee of N300. Please fill out the registration form below. After resgistration navigate to the <a href="savings-plan.html">subscribe</a> page to continew</p>
+
+        <section id="banner" class="baner">
+            <img src="img/p2.jpg" alt="Mega Food Network" class="banner">
+        </section>
+
+        <form id="registration-form">
+            <div class="form-group">
+                <label for="full-name">Full Name:</label>
+                <input type="text" id="full-name" name="full-name" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="whatsapp-number">WhatsApp Number:</label>
+                <input type="tel" id="whatsapp-number" name="whatsapp-number" placeholder="Enter your WhatsApp number" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+            </div>
+
+            <div class="form-group">
+                <label for="home-address">Home Address:</label>
+                <input type="text" id="home-address" name="home-address" placeholder="Enter your home address" required>
+            </div>
+
+            <div class="form-group">
+                <label for="state">State:</label>
+                <div class="custom-select">
+                    <select id="state" name="state" required>
+                        <option value="" disabled selected>Select your state</option>
+                        <option value="Abia">Abia</option>
+                        <option value="Adamawa">Adamawa</option>
+                        <option value="Akwa Ibom">Akwa Ibom</option>
+                        <option value="Anambra">Anambra</option>
+                        <option value="Bauchi">Bauchi</option>
+                        <option value="Bayelsa">Bayelsa</option>
+                        <option value="Benue">Benue</option>
+                        <option value="Borno">Borno</option>
+                        <option value="Cross River">Cross River</option>
+                        <option value="Delta">Delta</option>
+                        <option value="Ebonyi">Ebonyi</option>
+                        <option value="Edo">Edo</option>
+                        <option value="Ekiti">Ekiti</option>
+                        <option value="Enugu">Enugu</option>
+                        <option value="Gombe">Gombe</option>
+                        <option value="Imo">Imo</option>
+                        <option value="Jigawa">Jigawa</option>
+                        <option value="Kaduna">Kaduna</option>
+                        <option value="Kano">Kano</option>
+                        <option value="Katsina">Katsina</option>
+                        <option value="Kebbi">Kebbi</option>
+                        <option value="Kogi">Kogi</option>
+                        <option value="Kwara">Kwara</option>
+                        <option value="Lagos">Lagos</option>
+                        <option value="Nasarawa">Nasarawa</option>
+                        <option value="Niger">Niger</option>
+                        <option value="Ogun">Ogun</option>
+                        <option value="Ondo">Ondo</option>
+                        <option value="Osun">Osun</option>
+                        <option value="Oyo">Oyo</option>
+                        <option value="Plateau">Plateau</option>
+                        <option value="Rivers">Rivers</option>
+                        <option value="Sokoto">Sokoto</option>
+                        <option value="Taraba">Taraba</option>
+                        <option value="Yobe">Yobe</option>
+                        <option value="Zamfara">Zamfara</option>
+                        <option value="FCT">Federal Capital Territory</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+
+            <div class="form-group">
+                <label for="how-heard">How did you hear about us?</label>
+                <input type="text" id="how-heard" name="how-heard" placeholder="e.g., Social Media, Friend, Website" required>
+            </div>
+
+            <div class="form-group">
+                <input type="radio" id="accept-terms" name="accept-terms" value="yes" required>
+                <label for="accept-terms">I accept the <a href="privacy-policy.html">Privacy Policy</a> and assure that I am 18 years of age or older.</label>
+            </div>
+
+            <div class="payment-info">
+                <h3>Membership Fee: N300</h3>
+                <button type="button" id="pay-button">Proceed to Payment (Scroll Down)</button>
+                <div id="payment-details" style="display:none; margin-top: 20px; border: 1px solid #ccc; padding: 15px; border-radius: 5px;">
+                    <h3>Make a Transfer To:</h3>
+                    <p><strong>Account Name:</strong> Mega Food Network</p>
+                    <p><strong>Account Number:</strong> 1234567890</p>
+                    <p><strong>Bank:</strong> Example Bank</p>
+                    <p><strong>Amount:</strong> N300</p>
+                    <button type="button" id="paid-button">I Have Paid</button>
+                    <div id="payment-confirmation" style="display:none; margin-top: 15px;">
+                        <label for="reference-number">Reference Number (on proof of payment):</label>
+                        <input type="text" id="reference-number" name="reference-number" placeholder="Enter reference number">
+                        <label for="payment-proof">Upload Proof of Payment (Optional):</label>
+                        <input type="file" id="payment-proof" name="payment-proof" accept="image/*">
+                        <button type="button" id="submit-registration">Complete Registration</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div id="loading-screen">
+        <div class="loader"></div>
+        <p style="margin-left: 10px;">Processing...</p>
+    </div>
+
+    </section>
+    <script src="script/membership.js"></script>
+
+</body>
+</html>
